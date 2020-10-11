@@ -1,0 +1,6 @@
+framework module Pods_GuruLukshmi_DashBoard {
+  umbrella header "Pods-GuruLukshmi_DashBoard-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>136649299191-q9qdle411mb87peslbgbhh1n7n77jb8h.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.136649299191-q9qdle411mb87peslbgbhh1n7n77jb8h</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAa28cSk1oB1C_90mZJE8rVr0WaZ_AmBNc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>136649299191</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.prog31632.GuruLukshmi-DashBoard</string>
+	<key>PROJECT_ID</key>
+	<string>gurulukshmi-capstone</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gurulukshmi-capstone.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:136649299191:ios:5c8b5c75b6928c5304eff2</string>
+	<key>DATABASE_URL</key>
+	<string>https://gurulukshmi-capstone.firebaseio.com</string>
+</dict>
+</plist>

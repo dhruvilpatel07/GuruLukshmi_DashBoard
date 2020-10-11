@@ -1,0 +1,556 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		65004297A099AFDAFC7959D9 /* Pods_GuruLukshmi_DashBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2664591760404296599176D /* Pods_GuruLukshmi_DashBoard.framework */; };
+		AE2398A42523E4C5004F6E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398A32523E4C5004F6E1A /* AppDelegate.swift */; };
+		AE2398A62523E4C5004F6E1A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398A52523E4C5004F6E1A /* SceneDelegate.swift */; };
+		AE2398A92523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AE2398A72523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodeld */; };
+		AE2398AB2523E4C5004F6E1A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398AA2523E4C5004F6E1A /* ContentView.swift */; };
+		AE2398AD2523E4C8004F6E1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE2398AC2523E4C8004F6E1A /* Assets.xcassets */; };
+		AE2398B02523E4C8004F6E1A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE2398AF2523E4C8004F6E1A /* Preview Assets.xcassets */; };
+		AE2398B32523E4C8004F6E1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE2398B12523E4C8004F6E1A /* LaunchScreen.storyboard */; };
+		AE2398BF2523E5D9004F6E1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE2398BE2523E5D9004F6E1A /* GoogleService-Info.plist */; };
+		AE2398C22523E9DA004F6E1A /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398C12523E9DA004F6E1A /* OrderViewModel.swift */; };
+		AE2398C82523EA05004F6E1A /* FoodCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398C32523EA02004F6E1A /* FoodCategory.swift */; };
+		AE2398C92523EA05004F6E1A /* ListOfOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398C42523EA03004F6E1A /* ListOfOrder.swift */; };
+		AE2398CA2523EA05004F6E1A /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398C52523EA04004F6E1A /* Food.swift */; };
+		AE2398CB2523EA05004F6E1A /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398C62523EA04004F6E1A /* OrderModel.swift */; };
+		AE2398CC2523EA05004F6E1A /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398C72523EA05004F6E1A /* Orders.swift */; };
+		AE2398D02523EA6D004F6E1A /* CurrentOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398CD2523EA6B004F6E1A /* CurrentOrders.swift */; };
+		AE2398D12523EA6D004F6E1A /* OrdersInDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398CE2523EA6C004F6E1A /* OrdersInDetail.swift */; };
+		AE2398D22523EA6D004F6E1A /* DisplayOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398CF2523EA6D004F6E1A /* DisplayOrder.swift */; };
+		AE2A8A8825316D52004EE6B4 /* AnalyticalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A8A8725316D52004EE6B4 /* AnalyticalView.swift */; };
+		AE2A8A8C25329391004EE6B4 /* UserObjectModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A8A8B25329391004EE6B4 /* UserObjectModelData.swift */; };
+		AE2A8A8E25329418004EE6B4 /* AccessCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A8A8D25329418004EE6B4 /* AccessCode.swift */; };
+		AE2A8A9125329559004EE6B4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A8A9025329559004EE6B4 /* LoginView.swift */; };
+		AE2A8A9325329568004EE6B4 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A8A9225329568004EE6B4 /* LoadingView.swift */; };
+		AE2A8A9525329583004EE6B4 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A8A9425329583004EE6B4 /* SignUpView.swift */; };
+		AE2A8A97253295A2004EE6B4 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A8A96253295A2004EE6B4 /* CustomTextFieldView.swift */; };
+		AE781F7F252564AD0033B037 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE781F7E252564AD0033B037 /* HistoryView.swift */; };
+		AE781F81252668B20033B037 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE781F80252668B20033B037 /* GlobalVariables.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AE2398A02523E4C5004F6E1A /* GuruLukshmi_DashBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuruLukshmi_DashBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2398A32523E4C5004F6E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AE2398A52523E4C5004F6E1A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		AE2398A82523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GuruLukshmi_DashBoard.xcdatamodel; sourceTree = "<group>"; };
+		AE2398AA2523E4C5004F6E1A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AE2398AC2523E4C8004F6E1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AE2398AF2523E4C8004F6E1A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AE2398B22523E4C8004F6E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AE2398B42523E4C8004F6E1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE2398BE2523E5D9004F6E1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AE2398C12523E9DA004F6E1A /* OrderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
+		AE2398C32523EA02004F6E1A /* FoodCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCategory.swift; sourceTree = "<group>"; };
+		AE2398C42523EA03004F6E1A /* ListOfOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfOrder.swift; sourceTree = "<group>"; };
+		AE2398C52523EA04004F6E1A /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		AE2398C62523EA04004F6E1A /* OrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		AE2398C72523EA05004F6E1A /* Orders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
+		AE2398CD2523EA6B004F6E1A /* CurrentOrders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentOrders.swift; sourceTree = "<group>"; };
+		AE2398CE2523EA6C004F6E1A /* OrdersInDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersInDetail.swift; sourceTree = "<group>"; };
+		AE2398CF2523EA6D004F6E1A /* DisplayOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayOrder.swift; sourceTree = "<group>"; };
+		AE2A8A8725316D52004EE6B4 /* AnalyticalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticalView.swift; sourceTree = "<group>"; };
+		AE2A8A8B25329391004EE6B4 /* UserObjectModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObjectModelData.swift; sourceTree = "<group>"; };
+		AE2A8A8D25329418004EE6B4 /* AccessCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCode.swift; sourceTree = "<group>"; };
+		AE2A8A9025329559004EE6B4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AE2A8A9225329568004EE6B4 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		AE2A8A9425329583004EE6B4 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		AE2A8A96253295A2004EE6B4 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
+		AE781F7E252564AD0033B037 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		AE781F80252668B20033B037 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		B2664591760404296599176D /* Pods_GuruLukshmi_DashBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GuruLukshmi_DashBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C30598AFF2BA1C09D4BAE5A0 /* Pods-GuruLukshmi_DashBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuruLukshmi_DashBoard.release.xcconfig"; path = "Target Support Files/Pods-GuruLukshmi_DashBoard/Pods-GuruLukshmi_DashBoard.release.xcconfig"; sourceTree = "<group>"; };
+		CE9660EB3EBBF38E2F47498D /* Pods-GuruLukshmi_DashBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuruLukshmi_DashBoard.debug.xcconfig"; path = "Target Support Files/Pods-GuruLukshmi_DashBoard/Pods-GuruLukshmi_DashBoard.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AE23989D2523E4C5004F6E1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65004297A099AFDAFC7959D9 /* Pods_GuruLukshmi_DashBoard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E77792CF366D5EAAAEB6725 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE9660EB3EBBF38E2F47498D /* Pods-GuruLukshmi_DashBoard.debug.xcconfig */,
+				C30598AFF2BA1C09D4BAE5A0 /* Pods-GuruLukshmi_DashBoard.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		79244593C4BC0A25FF51757F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B2664591760404296599176D /* Pods_GuruLukshmi_DashBoard.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AE2398972523E4C5004F6E1A = {
+			isa = PBXGroup;
+			children = (
+				AE2398A22523E4C5004F6E1A /* GuruLukshmi_DashBoard */,
+				AE2398A12523E4C5004F6E1A /* Products */,
+				3E77792CF366D5EAAAEB6725 /* Pods */,
+				79244593C4BC0A25FF51757F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AE2398A12523E4C5004F6E1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE2398A02523E4C5004F6E1A /* GuruLukshmi_DashBoard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AE2398A22523E4C5004F6E1A /* GuruLukshmi_DashBoard */ = {
+			isa = PBXGroup;
+			children = (
+				AE2398BC2523E4EA004F6E1A /* Database */,
+				AE2398BB2523E4E4004F6E1A /* Service */,
+				AE2398BA2523E4DA004F6E1A /* App */,
+				AE2398C02523E93D004F6E1A /* Model */,
+				AE2398BD2523E4F1004F6E1A /* Views */,
+				AE2398AC2523E4C8004F6E1A /* Assets.xcassets */,
+				AE2398B12523E4C8004F6E1A /* LaunchScreen.storyboard */,
+				AE2398B42523E4C8004F6E1A /* Info.plist */,
+				AE2398BE2523E5D9004F6E1A /* GoogleService-Info.plist */,
+				AE2398AE2523E4C8004F6E1A /* Preview Content */,
+			);
+			path = GuruLukshmi_DashBoard;
+			sourceTree = "<group>";
+		};
+		AE2398AE2523E4C8004F6E1A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				AE2398AF2523E4C8004F6E1A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AE2398BA2523E4DA004F6E1A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AE2398A52523E4C5004F6E1A /* SceneDelegate.swift */,
+				AE2398A32523E4C5004F6E1A /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		AE2398BB2523E4E4004F6E1A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				AE2398C12523E9DA004F6E1A /* OrderViewModel.swift */,
+				AE781F80252668B20033B037 /* GlobalVariables.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		AE2398BC2523E4EA004F6E1A /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				AE2398A72523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodeld */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		AE2398BD2523E4F1004F6E1A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AE2A8A8F25329541004EE6B4 /* LoginView */,
+				AE2398CD2523EA6B004F6E1A /* CurrentOrders.swift */,
+				AE2398CF2523EA6D004F6E1A /* DisplayOrder.swift */,
+				AE2398CE2523EA6C004F6E1A /* OrdersInDetail.swift */,
+				AE2398AA2523E4C5004F6E1A /* ContentView.swift */,
+				AE781F7E252564AD0033B037 /* HistoryView.swift */,
+				AE2A8A8725316D52004EE6B4 /* AnalyticalView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AE2398C02523E93D004F6E1A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE2398C52523EA04004F6E1A /* Food.swift */,
+				AE2398C32523EA02004F6E1A /* FoodCategory.swift */,
+				AE2398C42523EA03004F6E1A /* ListOfOrder.swift */,
+				AE2398C62523EA04004F6E1A /* OrderModel.swift */,
+				AE2398C72523EA05004F6E1A /* Orders.swift */,
+				AE2A8A8B25329391004EE6B4 /* UserObjectModelData.swift */,
+				AE2A8A8D25329418004EE6B4 /* AccessCode.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE2A8A8F25329541004EE6B4 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				AE2A8A9025329559004EE6B4 /* LoginView.swift */,
+				AE2A8A9225329568004EE6B4 /* LoadingView.swift */,
+				AE2A8A9425329583004EE6B4 /* SignUpView.swift */,
+				AE2A8A96253295A2004EE6B4 /* CustomTextFieldView.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AE23989F2523E4C5004F6E1A /* GuruLukshmi_DashBoard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE2398B72523E4C8004F6E1A /* Build configuration list for PBXNativeTarget "GuruLukshmi_DashBoard" */;
+			buildPhases = (
+				7E7D4FC01C07B86A16E1B398 /* [CP] Check Pods Manifest.lock */,
+				AE23989C2523E4C5004F6E1A /* Sources */,
+				AE23989D2523E4C5004F6E1A /* Frameworks */,
+				AE23989E2523E4C5004F6E1A /* Resources */,
+				030BC645AFEFD32E60300914 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GuruLukshmi_DashBoard;
+			productName = GuruLukshmi_DashBoard;
+			productReference = AE2398A02523E4C5004F6E1A /* GuruLukshmi_DashBoard.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AE2398982523E4C5004F6E1A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "Xcode User";
+				TargetAttributes = {
+					AE23989F2523E4C5004F6E1A = {
+						CreatedOnToolsVersion = 11.0;
+					};
+				};
+			};
+			buildConfigurationList = AE23989B2523E4C5004F6E1A /* Build configuration list for PBXProject "GuruLukshmi_DashBoard" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AE2398972523E4C5004F6E1A;
+			productRefGroup = AE2398A12523E4C5004F6E1A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AE23989F2523E4C5004F6E1A /* GuruLukshmi_DashBoard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AE23989E2523E4C5004F6E1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE2398B32523E4C8004F6E1A /* LaunchScreen.storyboard in Resources */,
+				AE2398BF2523E5D9004F6E1A /* GoogleService-Info.plist in Resources */,
+				AE2398B02523E4C8004F6E1A /* Preview Assets.xcassets in Resources */,
+				AE2398AD2523E4C8004F6E1A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		030BC645AFEFD32E60300914 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GuruLukshmi_DashBoard/Pods-GuruLukshmi_DashBoard-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GuruLukshmi_DashBoard/Pods-GuruLukshmi_DashBoard-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GuruLukshmi_DashBoard/Pods-GuruLukshmi_DashBoard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E7D4FC01C07B86A16E1B398 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GuruLukshmi_DashBoard-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AE23989C2523E4C5004F6E1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE2398D12523EA6D004F6E1A /* OrdersInDetail.swift in Sources */,
+				AE2A8A8C25329391004EE6B4 /* UserObjectModelData.swift in Sources */,
+				AE2398A42523E4C5004F6E1A /* AppDelegate.swift in Sources */,
+				AE2398CB2523EA05004F6E1A /* OrderModel.swift in Sources */,
+				AE2398D22523EA6D004F6E1A /* DisplayOrder.swift in Sources */,
+				AE2398C82523EA05004F6E1A /* FoodCategory.swift in Sources */,
+				AE2398A62523E4C5004F6E1A /* SceneDelegate.swift in Sources */,
+				AE2398CC2523EA05004F6E1A /* Orders.swift in Sources */,
+				AE781F7F252564AD0033B037 /* HistoryView.swift in Sources */,
+				AE2398D02523EA6D004F6E1A /* CurrentOrders.swift in Sources */,
+				AE2A8A9525329583004EE6B4 /* SignUpView.swift in Sources */,
+				AE2A8A8E25329418004EE6B4 /* AccessCode.swift in Sources */,
+				AE781F81252668B20033B037 /* GlobalVariables.swift in Sources */,
+				AE2A8A97253295A2004EE6B4 /* CustomTextFieldView.swift in Sources */,
+				AE2398C92523EA05004F6E1A /* ListOfOrder.swift in Sources */,
+				AE2A8A9325329568004EE6B4 /* LoadingView.swift in Sources */,
+				AE2398C22523E9DA004F6E1A /* OrderViewModel.swift in Sources */,
+				AE2A8A8825316D52004EE6B4 /* AnalyticalView.swift in Sources */,
+				AE2398CA2523EA05004F6E1A /* Food.swift in Sources */,
+				AE2A8A9125329559004EE6B4 /* LoginView.swift in Sources */,
+				AE2398AB2523E4C5004F6E1A /* ContentView.swift in Sources */,
+				AE2398A92523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AE2398B12523E4C8004F6E1A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE2398B22523E4C8004F6E1A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AE2398B52523E4C8004F6E1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AE2398B62523E4C8004F6E1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AE2398B82523E4C8004F6E1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE9660EB3EBBF38E2F47498D /* Pods-GuruLukshmi_DashBoard.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"GuruLukshmi_DashBoard/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = GuruLukshmi_DashBoard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prog31632.GuruLukshmi-DashBoard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		AE2398B92523E4C8004F6E1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C30598AFF2BA1C09D4BAE5A0 /* Pods-GuruLukshmi_DashBoard.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"GuruLukshmi_DashBoard/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = GuruLukshmi_DashBoard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prog31632.GuruLukshmi-DashBoard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AE23989B2523E4C5004F6E1A /* Build configuration list for PBXProject "GuruLukshmi_DashBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE2398B52523E4C8004F6E1A /* Debug */,
+				AE2398B62523E4C8004F6E1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE2398B72523E4C8004F6E1A /* Build configuration list for PBXNativeTarget "GuruLukshmi_DashBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE2398B82523E4C8004F6E1A /* Debug */,
+				AE2398B92523E4C8004F6E1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AE2398A72523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AE2398A82523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodel */,
+			);
+			currentVersion = AE2398A82523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodel */;
+			path = GuruLukshmi_DashBoard.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = AE2398982523E4C5004F6E1A /* Project object */;
+}
