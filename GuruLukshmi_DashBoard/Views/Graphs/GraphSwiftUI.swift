@@ -10,7 +10,8 @@ import SwiftUI
 
 struct GraphSwiftUI: View {
     @State var pickerSelectedItem = 1
-    
+    //@ObservedObject var orderVM = OrderViewModel()
+    @StateObject var model = UserObjectModelData()
     @State var dataPoints: [[CGFloat]] = [
         [50, 38, 139, 160, 56, 93, 80],
         [120, 60, 12, 100, 63, 39, 189],
@@ -37,6 +38,7 @@ struct GraphSwiftUI: View {
                 
                 HStack(spacing: 30.0){
                     ForEach(0..<7){ x in
+                        
                         BarChart(value: dataPoints[pickerSelectedItem - 1][x], dateString: dates[x])
                     }
                    
@@ -56,6 +58,7 @@ struct GraphSwiftUI_Previews: PreviewProvider {
     }
 }
 
+/*
 struct BarChart: View {
     var value: CGFloat
     var dateString: String
@@ -69,3 +72,4 @@ struct BarChart: View {
         }
     }
 }
+*/

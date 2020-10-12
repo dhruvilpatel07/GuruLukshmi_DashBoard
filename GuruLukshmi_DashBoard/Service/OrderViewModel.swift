@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 import FirebaseFirestore
 import Firebase
 import FirebaseFirestoreSwift
@@ -20,13 +21,14 @@ class OrderViewModel: ObservableObject {
     init() {
         fetchData()
         fetchHistoryData()
+        fetchHistoryDataByDate(date: Date())
         
     }
     
     //Fetching data from Order table 
     func fetchData() {
         db.collection("Orders")
-        .order(by: "orderedTime")
+            .order(by: "orderedTime")
             .addSnapshotListener { (querySnapshot, error) in
             if let querySnapshot = querySnapshot{
                 self.orderList = querySnapshot.documents.compactMap{ document in
@@ -64,23 +66,25 @@ class OrderViewModel: ObservableObject {
     }
     
     //Getting DAT from History table
-    func fetchHistoryDataByDate() {
-           db.collection("OrderHistory")
-            //.whereField("cName", isEqualTo: "Dhruvil Patel")
+    func fetchHistoryDataByDate(date : Date) {
+        db.collection("OrderHistory")
+            .whereField("orderedTime", isDateInToday: date)
+            //.whereField("orderedTime", isEqualTo: date)
+        //.order(by: "orderedTime")
             .addSnapshotListener { (querySnapshot, error) in
-               if let querySnapshot = querySnapshot{
-                   self.historyOrderList = querySnapshot.documents.compactMap{ document in
-                       do{
-                           let x = try document.data(as: Orders.self)
-                           return x
-                       }
-                       catch{
-                           print(error)
-                       }
-                       return nil
-                   }
-               }
-           }
+            if let querySnapshot = querySnapshot{
+                self.historyOrderListByDate = querySnapshot.documents.compactMap{ document in
+                    do{
+                        let x = try document.data(as: Orders.self)
+                        return x
+                    }
+                    catch{
+                        print(error)
+                    }
+                    return nil
+                }
+            }
+        }
        }
     
     func deleteOrder(_ order: Orders){
@@ -106,3 +110,17 @@ class OrderViewModel: ObservableObject {
     
 
 }
+
+/*extension CollectionReference {
+    func whereField(_ field: String, isDateInToday value: Date) -> Query {
+        let components = Calendar.current.dateComponents([.month, .day, .year], from: value)
+        guard
+            let start = Calendar.current.date(from: components),
+            let end = Calendar.current.date(byAdding: .day, value: 1, to: start)
+        else {
+            fatalError("Could not find start date or calculate end date.")
+        }
+        return whereField(field, isGreaterThan: start).whereField(field, isLessThan: end)
+    }
+}*/
+

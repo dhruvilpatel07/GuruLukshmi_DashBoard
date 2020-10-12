@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import FirebaseFirestore
 import SwiftUI
 
 @UIApplicationMain
@@ -86,6 +87,22 @@ extension Color{
     static let newSecondaryColor = Color("secondaryColor")
 }
 
-extension Timestamp {
-    static let currentDate = Date().timeIntervalSince1970
+extension Date {
+    static var currentTimeStamp: Int64{
+        return Int64(Date().timeIntervalSince1970 * 1000)
+    }
+}
+
+
+extension CollectionReference {
+    func whereField(_ field: String, isDateInToday value: Date) -> Query {
+        let components = Calendar.current.dateComponents([.month, .day, .year], from: value)
+        guard
+            let start = Calendar.current.date(from: components),
+            let end = Calendar.current.date(byAdding: .day, value: 1, to: start)
+        else {
+            fatalError("Could not find start date or calculate end date.")
+        }
+        return whereField(field, isGreaterThan: start).whereField(field, isLessThan: end)
+    }
 }
