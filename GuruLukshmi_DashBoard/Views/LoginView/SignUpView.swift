@@ -97,9 +97,7 @@ struct SignUpView: View {
                 if model.alertMsg == "Email Verification Has Been Sent !!! Verify Your Email ID !!!"{
                     
                     model.isSignUp.toggle()
-                    model.email_SignUp = ""
-                    model.password_SignUp = ""
-                    model.reEnterPassword = ""
+                    model.clearSignUpForm()
                 }
                 
             }))

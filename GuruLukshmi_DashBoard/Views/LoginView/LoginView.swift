@@ -18,7 +18,7 @@ struct LoginView: View {
                 Spacer(minLength: 0)
                 
                 ZStack{
-                    Image("guru_logo")
+                    Image("logo")
                         .resizable()
                         .frame(width: 500, height: 400)
                 }
@@ -78,7 +78,7 @@ struct LoginView: View {
         .background(LinearGradient(gradient: .init(colors: [Color.newPrimaryColor,Color.newSecondaryColor]), startPoint: .top, endPoint: .bottom).ignoresSafeArea(.all, edges: .all))
         .fullScreenCover(isPresented: $model.isSignUp) {
             
-            SignUpView(model: model)
+            SignUpView(model: model).onDisappear(perform: model.clearSignUpForm)
         }
         .alert(isPresented: $model.alert, content: {
             Alert(title: Text("Message"), message: Text(model.alertMsg), dismissButton: .destructive(Text("Ok")))

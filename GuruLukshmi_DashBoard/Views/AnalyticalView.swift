@@ -22,7 +22,13 @@ struct AnalyticalView: View {
     
     var body: some View {
 
-        HStack(spacing: 10.0){
+        ZStack{
+            GraphSwiftUI()
+        }.onAppear{
+            print("HEYYYY23")
+            print(self.orderVM.historyOrderList.count)
+        }
+        /*HStack(spacing: 10.0){
             ForEach(0..<7, id: \.self) { x in
             
                 //yVal = Swift.min(order/10, 150)
@@ -36,7 +42,7 @@ struct AnalyticalView: View {
                         .frame(width: 25, height:CGFloat(self.orderVM.historyOrderList.count))
                     // Text("\(orderVM.historyOrderList, formatter: AnalyticalView.self.dateFormatter)")
                 }.onAppear{
-                    //self.orderVM.fetchHistoryDataByDate(date: Double(Date().timeIntervalSince1970))
+                   // self.orderVM.fetchHistoryDataByDate(date: Double(Date().timeIntervalSince1970))
                 }
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -45,6 +51,7 @@ struct AnalyticalView: View {
             .onAppear{//self.orderCount = CGFloat(self.orderVM.historyOrderList.count)
                 self.orderCount1 = self.orderVM.historyOrderList.count
         }
+ */
     }
 }
 

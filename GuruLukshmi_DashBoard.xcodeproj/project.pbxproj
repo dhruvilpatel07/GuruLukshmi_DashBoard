@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		65004297A099AFDAFC7959D9 /* Pods_GuruLukshmi_DashBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2664591760404296599176D /* Pods_GuruLukshmi_DashBoard.framework */; };
+		A10F80192533AFFB00129297 /* UserDatabaseConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F80182533AFFB00129297 /* UserDatabaseConnection.swift */; };
+		A10F801D2533B06C00129297 /* Admins.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F801C2533B06C00129297 /* Admins.swift */; };
+		A10F80212533BCAD00129297 /* GraphSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F80202533BCAD00129297 /* GraphSwiftUI.swift */; };
 		AE2398A42523E4C5004F6E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398A32523E4C5004F6E1A /* AppDelegate.swift */; };
 		AE2398A62523E4C5004F6E1A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398A52523E4C5004F6E1A /* SceneDelegate.swift */; };
 		AE2398A92523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AE2398A72523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodeld */; };
@@ -37,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A10F80182533AFFB00129297 /* UserDatabaseConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatabaseConnection.swift; sourceTree = "<group>"; };
+		A10F801C2533B06C00129297 /* Admins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admins.swift; sourceTree = "<group>"; };
+		A10F80202533BCAD00129297 /* GraphSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphSwiftUI.swift; sourceTree = "<group>"; };
 		AE2398A02523E4C5004F6E1A /* GuruLukshmi_DashBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuruLukshmi_DashBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE2398A32523E4C5004F6E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE2398A52523E4C5004F6E1A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +105,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A10F80252533D6BD00129297 /* Graphs */ = {
+			isa = PBXGroup;
+			children = (
+				A10F80202533BCAD00129297 /* GraphSwiftUI.swift */,
+			);
+			path = Graphs;
+			sourceTree = "<group>";
+		};
 		AE2398972523E4C5004F6E1A = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +170,7 @@
 			children = (
 				AE2398C12523E9DA004F6E1A /* OrderViewModel.swift */,
 				AE781F80252668B20033B037 /* GlobalVariables.swift */,
+				A10F80182533AFFB00129297 /* UserDatabaseConnection.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -171,13 +186,14 @@
 		AE2398BD2523E4F1004F6E1A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A10F80252533D6BD00129297 /* Graphs */,
 				AE2A8A8F25329541004EE6B4 /* LoginView */,
 				AE2398CD2523EA6B004F6E1A /* CurrentOrders.swift */,
 				AE2398CF2523EA6D004F6E1A /* DisplayOrder.swift */,
 				AE2398CE2523EA6C004F6E1A /* OrdersInDetail.swift */,
-				AE2398AA2523E4C5004F6E1A /* ContentView.swift */,
 				AE781F7E252564AD0033B037 /* HistoryView.swift */,
 				AE2A8A8725316D52004EE6B4 /* AnalyticalView.swift */,
+				AE2398AA2523E4C5004F6E1A /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -192,6 +208,7 @@
 				AE2398C72523EA05004F6E1A /* Orders.swift */,
 				AE2A8A8B25329391004EE6B4 /* UserObjectModelData.swift */,
 				AE2A8A8D25329418004EE6B4 /* AccessCode.swift */,
+				A10F801C2533B06C00129297 /* Admins.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,6 +343,7 @@
 				AE2398D12523EA6D004F6E1A /* OrdersInDetail.swift in Sources */,
 				AE2A8A8C25329391004EE6B4 /* UserObjectModelData.swift in Sources */,
 				AE2398A42523E4C5004F6E1A /* AppDelegate.swift in Sources */,
+				A10F801D2533B06C00129297 /* Admins.swift in Sources */,
 				AE2398CB2523EA05004F6E1A /* OrderModel.swift in Sources */,
 				AE2398D22523EA6D004F6E1A /* DisplayOrder.swift in Sources */,
 				AE2398C82523EA05004F6E1A /* FoodCategory.swift in Sources */,
@@ -342,8 +360,10 @@
 				AE2398C22523E9DA004F6E1A /* OrderViewModel.swift in Sources */,
 				AE2A8A8825316D52004EE6B4 /* AnalyticalView.swift in Sources */,
 				AE2398CA2523EA05004F6E1A /* Food.swift in Sources */,
+				A10F80212533BCAD00129297 /* GraphSwiftUI.swift in Sources */,
 				AE2A8A9125329559004EE6B4 /* LoginView.swift in Sources */,
 				AE2398AB2523E4C5004F6E1A /* ContentView.swift in Sources */,
+				A10F80192533AFFB00129297 /* UserDatabaseConnection.swift in Sources */,
 				AE2398A92523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

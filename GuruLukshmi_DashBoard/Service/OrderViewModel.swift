@@ -15,13 +15,12 @@ class OrderViewModel: ObservableObject {
     @Published var orderList = [Orders]()
     @Published var historyOrderList = [Orders]()
     @Published var historyOrderListByDate = [Orders]()
-    @Published var accessCode = [AccessCode]()
     private var db = Firestore.firestore()
     
     init() {
         fetchData()
         fetchHistoryData()
-        loadAccessCode()
+        
     }
     
     //Fetching data from Order table 
@@ -65,11 +64,10 @@ class OrderViewModel: ObservableObject {
     }
     
     //Getting DAT from History table
-    func fetchHistoryDataByDate(date : Timestamp) {
+    func fetchHistoryDataByDate() {
            db.collection("OrderHistory")
-        .whereField("orderedTime", isEqualTo: date)
-           .order(by: "orderedTime")
-               .addSnapshotListener { (querySnapshot, error) in
+            //.whereField("cName", isEqualTo: "Dhruvil Patel")
+            .addSnapshotListener { (querySnapshot, error) in
                if let querySnapshot = querySnapshot{
                    self.historyOrderList = querySnapshot.documents.compactMap{ document in
                        do{
@@ -106,21 +104,5 @@ class OrderViewModel: ObservableObject {
         }
     }
     
-    func loadAccessCode() {
-        db.collection("AccessCode")
-            .addSnapshotListener { (querySnapshot, error) in
-            if let querySnapshot = querySnapshot{
-                self.accessCode = querySnapshot.documents.compactMap{ document in
-                    do{
-                        let x = try document.data(as: AccessCode.self)
-                        return x
-                    }
-                    catch{
-                        print(error)
-                    }
-                    return nil
-                }
-            }
-        }
-    }
+
 }

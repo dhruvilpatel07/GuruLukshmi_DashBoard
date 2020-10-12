@@ -13,6 +13,8 @@ import LocalAuthentication
 
 class UserObjectModelData : ObservableObject {
     
+    @ObservedObject var db = UserDatabaseConnection()
+    
     @Published var email = ""
     @Published var password = ""
     @Published var isSignUp = false
@@ -29,6 +31,7 @@ class UserObjectModelData : ObservableObject {
     
     // User Status
     @AppStorage("log_Status") var status = false
+    @AppStorage("admin_Status") var isAdmin = false
 
     
     // Loading
@@ -101,7 +104,7 @@ class UserObjectModelData : ObservableObject {
             self.isLoading.toggle()
         }
         
-        Auth.auth().signIn(withEmail: email, password: password) { (result, err) in
+        Auth.auth().signIn(withEmail: email, password: password) { [self] (result, err) in
             
             withAnimation{
                 
@@ -124,6 +127,11 @@ class UserObjectModelData : ObservableObject {
                 try! Auth.auth().signOut()
                 return
             }
+            
+            //Checking if current user is admin or not
+            for admin in self.db.arrayOfAdmins{
+                if user?.uid == admin.uuid{ self.isAdmin = true }
+            }
             // setting user status as true
             withAnimation{
                 self.status = true
@@ -135,7 +143,8 @@ class UserObjectModelData : ObservableObject {
     
     func signUp(){
         
-        if email_SignUp == "" || password_SignUp == "" || reEnterPassword == ""{
+        if email_SignUp == "" || password_SignUp == "" || reEnterPassword == ""
+            || accessCode_SignUp == ""{
             
             self.alertMsg = "Fill contents proprely!!!"
             self.alert.toggle()
@@ -144,6 +153,12 @@ class UserObjectModelData : ObservableObject {
         
         if password_SignUp != reEnterPassword{
             self.alertMsg = "Password Mismatch !!!"
+            self.alert.toggle()
+            return
+        }
+        
+        if accessCode_SignUp != self.db.accessCode[0].code{
+            self.alertMsg = "Access Code Mismatch !!!"
             self.alert.toggle()
             return
         }
@@ -162,6 +177,10 @@ class UserObjectModelData : ObservableObject {
                 self.alert.toggle()
                 return
             }
+            
+            // adding the user to Admins table
+            
+            self.db.addAdmins(Admins(email: self.email_SignUp, uuid: (result?.user.uid)!))
             
             // sending Verifcation Link
             
@@ -184,6 +203,7 @@ class UserObjectModelData : ObservableObject {
         try! Auth.auth().signOut()
         withAnimation{
             self.status = false
+            self.isAdmin = false
         }
         // clearing all data
         email = ""
@@ -191,6 +211,14 @@ class UserObjectModelData : ObservableObject {
         email_SignUp = ""
         password_SignUp = ""
         reEnterPassword = ""
+    }
+    
+    func clearSignUpForm(){
+        // clearing all signUp data
+        email_SignUp = ""
+        password_SignUp = ""
+        reEnterPassword = ""
+        accessCode_SignUp = ""
     }
     
 }
