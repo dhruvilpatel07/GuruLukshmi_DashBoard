@@ -45,13 +45,17 @@ struct ContentView: View {
                         List{
                             
                             //if user is staff show them this menu
-                            if !isAdmin{
+                         /*   if !isAdmin{
                                 NavigationLink(destination: CurrentOrders()) {
                                     Text("Current Orders")
                                 }
-                            }
+                            }*/
                             
                             //if user is admin or staff member then show them this menu
+                            NavigationLink(destination: CurrentOrders()) {
+                                Text("Current Orders")
+                            }
+                            
                             NavigationLink(destination: HistoryView()) {
                                 Text("History")
                             }
@@ -60,6 +64,10 @@ struct ContentView: View {
                             if isAdmin{
                                 NavigationLink(destination: AnalyticalView()) {
                                     Text("Analytics")
+                                }
+                                
+                                NavigationLink(destination: AddFoodFormView()) {
+                                    Text("Add Food")
                                 }
                             }
                             

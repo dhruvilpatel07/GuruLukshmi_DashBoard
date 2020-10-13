@@ -2,7 +2,7 @@
 //  UserDatabaseConnection.swift
 //  GuruLukshmi_DashBoard
 //
-//  Created by Dhruvil Patel on 2020-10-11.
+//  Created by Xcode User on 2020-10-11.
 //  Copyright © 2020 Xcode User. All rights reserved.
 //
 

@@ -60,7 +60,7 @@ struct OrdersInDetail: View {
     
     struct OrdersInDetail_Previews: PreviewProvider {
         static var previews: some View {
-            OrdersInDetail(showHistory: .constant(true), orderDetail: Orders())
+            OrdersInDetail(showHistory: .constant(true), orderDetail: Orders(isDineIn: false))
         }
     }
 }

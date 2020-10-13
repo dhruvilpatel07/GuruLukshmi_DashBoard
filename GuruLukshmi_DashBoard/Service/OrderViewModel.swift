@@ -13,17 +13,98 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class OrderViewModel: ObservableObject {
+    
+    @Published var arrayOfCategory = [FoodCategory]()
     @Published var orderList = [Orders]()
     @Published var historyOrderList = [Orders]()
-    @Published var historyOrderListByDate = [Orders]()
+    
+    //fetching by day
+    @Published var historyOrderListByDateArray = [Orders]()
+    @Published var historyOrderListByDateArrayCount = [Int]()
+    
+    //fetching by hourly
+    @Published var historyOrderListByHourArray = [Orders]()
+    @Published var historyOrderListByHourArrayCount = [Int]()
+    
+    //fetching by monthly
+    @Published var historyOrderListByMonthArray = [Orders]()
+    @Published var historyOrderListByMonthArrayCount = [Int]()
+    
+    let componentsYear = Calendar.current.dateComponents([.year], from: Date())
+    
+    
+    
     private var db = Firestore.firestore()
     
     init() {
         fetchData()
+        loadCategory()
         fetchHistoryData()
-        fetchHistoryDataByDate(date: Date())
+        fetchHistoryDataByDateArray(dates: [
+                        Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
+                        Calendar.current.date(byAdding: .day, value: -2, to: Date())!,
+                        Calendar.current.date(byAdding: .day, value: -3, to: Date())!,
+                        Calendar.current.date(byAdding: .day, value: -4, to: Date())!,
+                        Calendar.current.date(byAdding: .day, value: -5, to: Date())!,
+                        Calendar.current.date(byAdding: .day, value: -6, to: Date())!,
+                        Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+        ])
         
+        
+        fetchHistoryDataByHourArray(dates: [
+                         Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!
+                        ,Calendar.current.date(bySettingHour: 13, minute: 0, second: 0, of: Date())!
+                        ,Calendar.current.date(bySettingHour: 14, minute: 0, second: 0, of: Date())!
+                        ,Calendar.current.date(bySettingHour: 15, minute: 0, second: 0, of: Date())!
+                        ,Calendar.current.date(bySettingHour: 16, minute: 0, second: 0, of: Date())!
+                        ,Calendar.current.date(bySettingHour: 17, minute: 0, second: 0, of: Date())!
+                        ,Calendar.current.date(bySettingHour: 18, minute: 0, second: 0, of: Date())!
+                        ,Calendar.current.date(bySettingHour: 19, minute: 0, second: 0, of: Date())!
+                        ,Calendar.current.date(bySettingHour: 20, minute: 0, second: 0, of: Date())!
+                        ,Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date())!
+                        ,Calendar.current.date(bySettingHour: 22, minute: 0, second: 0, of: Date())!
+        ])
+    
+
+        fetchHistoryDataByMonthArray(dates: [
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 1))!,
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 2))!,
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 3))!,
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 4))!,
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 5))!,
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 6))!,
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 7))!,
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 8))!,
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 9))!,
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 10))!,
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 11))!,
+            Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 12))!
+        ])
     }
+    
+    
+    //Fetching category
+    func loadCategory() {
+        db.collection("FoodCategory")
+            .order(by: "foodType")
+        //.order(by: "orderedTime")
+            .addSnapshotListener { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot{
+                self.arrayOfCategory = querySnapshot.documents.compactMap{ document in
+                    do{
+                        let x = try document.data(as: FoodCategory.self)
+                        return x
+                    }
+                    catch{
+                        print(error)
+                    }
+                    return nil
+                    
+                }
+            }
+        }
+    }
+    
     
     //Fetching data from Order table 
     func fetchData() {
@@ -65,27 +146,81 @@ class OrderViewModel: ObservableObject {
         }
     }
     
-    //Getting DAT from History table
-    func fetchHistoryDataByDate(date : Date) {
-        db.collection("OrderHistory")
-            .whereField("orderedTime", isDateInToday: date)
-            //.whereField("orderedTime", isEqualTo: date)
-        //.order(by: "orderedTime")
-            .addSnapshotListener { (querySnapshot, error) in
-            if let querySnapshot = querySnapshot{
-                self.historyOrderListByDate = querySnapshot.documents.compactMap{ document in
-                    do{
-                        let x = try document.data(as: Orders.self)
-                        return x
+    
+    
+    //Getting DATA by days
+    func fetchHistoryDataByDateArray(dates : [Date]) {
+        for date in dates {
+            db.collection("OrderHistory")
+                .whereField("orderedTime", isDateInToday: date)
+                .addSnapshotListener { (querySnapshot, error) in
+                if let querySnapshot = querySnapshot{
+                    self.historyOrderListByDateArray = querySnapshot.documents.compactMap{ document in
+                        do{
+                            let x = try document.data(as: Orders.self)
+                            
+                            return x
+                        }
+                        catch{
+                            print(error)
+                        }
+                        return nil
                     }
-                    catch{
-                        print(error)
-                    }
-                    return nil
+                    //adding number of order to array count
+                    self.historyOrderListByDateArrayCount.append(self.historyOrderListByDateArray.count)
                 }
             }
         }
-       }
+    }
+    
+    //Getting DATA by hourly
+    func fetchHistoryDataByHourArray(dates : [Date]) {
+        for date in dates {
+            db.collection("OrderHistory")
+                .whereField("orderedTime", isHourly: date)
+                .addSnapshotListener { (querySnapshot, error) in
+                if let querySnapshot = querySnapshot{
+                    self.historyOrderListByHourArray = querySnapshot.documents.compactMap{ document in
+                        do{
+                            let x = try document.data(as: Orders.self)
+                            return x
+                        }
+                        catch{
+                            print(error)
+                        }
+                        return nil
+                    }
+                    //adding number of order to array count
+                    self.historyOrderListByHourArrayCount.append(self.historyOrderListByHourArray.count)
+                }
+            }
+        }
+    }
+    
+    //getting Data by monthly
+    func fetchHistoryDataByMonthArray(dates : [Date]) {
+        for date in dates {
+            db.collection("OrderHistory")
+                .whereField("orderedTime", isMonthly: date)
+                .addSnapshotListener { (querySnapshot, error) in
+                if let querySnapshot = querySnapshot{
+                    self.historyOrderListByMonthArray = querySnapshot.documents.compactMap{ document in
+                        do{
+                            let x = try document.data(as: Orders.self)
+                            return x
+                        }
+                        catch{
+                            print(error)
+                        }
+                        return nil
+                    }
+                    //adding number of order to array count
+                    self.historyOrderListByMonthArrayCount.append(self.historyOrderListByMonthArray.count)
+                }
+            }
+        }
+    }
+    
     
     func deleteOrder(_ order: Orders){
         if let orderID = order.id{
@@ -108,19 +243,17 @@ class OrderViewModel: ObservableObject {
         }
     }
     
+    // Add Food
+    func addFoods(_ food: Food){
+        do{
+           
+            let _ = try db.collection("Food").addDocument(from: food)
+           // db.collection("Food").whereField("categoryID", isEqualTo: food.foodType.id)
+        }
+        catch{
+            fatalError("Enable to add Order: \(error.localizedDescription)")
+        }
+    }
 
 }
-
-/*extension CollectionReference {
-    func whereField(_ field: String, isDateInToday value: Date) -> Query {
-        let components = Calendar.current.dateComponents([.month, .day, .year], from: value)
-        guard
-            let start = Calendar.current.date(from: components),
-            let end = Calendar.current.date(byAdding: .day, value: 1, to: start)
-        else {
-            fatalError("Could not find start date or calculate end date.")
-        }
-        return whereField(field, isGreaterThan: start).whereField(field, isLessThan: end)
-    }
-}*/
 

@@ -2,7 +2,7 @@
 //  CurrentOrders.swift
 //  GuruLukshmi_Kiosk
 //
-//  Created by Dhruvil Patel on 2020-09-20.
+//  Created by Xcode User on 2020-09-20.
 //
 
 import SwiftUI
@@ -21,7 +21,7 @@ struct CurrentOrders: View {
                 List{
                     ForEach(orderVM.orderList, id: \.self){ order in
                         NavigationLink(destination: OrdersInDetail(showHistory: self.$showHistory, orderDetail: order)) {
-                            Text("Customer Name: \(order.cName) \nOrder Id: \(order.id ?? "")")
+                            Text("Customer Name: \(order.cName) \n-- \(order.isDineIn ? "Dine In" : "Take Out")").bold()
                         }
                         }
                 }

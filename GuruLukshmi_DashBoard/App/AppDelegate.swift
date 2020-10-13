@@ -87,14 +87,8 @@ extension Color{
     static let newSecondaryColor = Color("secondaryColor")
 }
 
-extension Date {
-    static var currentTimeStamp: Int64{
-        return Int64(Date().timeIntervalSince1970 * 1000)
-    }
-}
-
-
 extension CollectionReference {
+    //by daily
     func whereField(_ field: String, isDateInToday value: Date) -> Query {
         let components = Calendar.current.dateComponents([.month, .day, .year], from: value)
         guard
@@ -104,5 +98,62 @@ extension CollectionReference {
             fatalError("Could not find start date or calculate end date.")
         }
         return whereField(field, isGreaterThan: start).whereField(field, isLessThan: end)
+    }
+    
+    // By hourly
+    func whereField(_ field: String, isHourly value: Date) -> Query {
+        let components = Calendar.current.dateComponents([.month, .day, .year ,.hour], from: value)
+        guard
+            let start = Calendar.current.date(from: components),
+            let end = Calendar.current.date(byAdding: .hour, value: 1, to: start)
+        else {
+            fatalError("Could not find start Hour or calculate end hour.")
+        }
+        return whereField(field, isGreaterThan: start).whereField(field, isLessThan: end)
+    }
+    
+    // By Monthly
+    func whereField(_ field: String, isMonthly value: Date) -> Query {
+        let components = Calendar.current.dateComponents([.month, .year], from: value)
+        guard
+            let start = Calendar.current.date(from: components),
+            let end = Calendar.current.date(byAdding: .month, value: 1, to: start)
+        else {
+            fatalError("Could not find start Hour or calculate end hour.")
+        }
+        return whereField(field, isGreaterThan: start).whereField(field, isLessThan: end)
+    }
+    
+}
+
+extension Double {
+    /// Rounds the double to decimal places value
+    func rounded(toPlaces places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
+
+
+extension Date {
+    static func getDates(forLastNDays nDays: Int) -> [String] {
+        let cal = NSCalendar.current
+        // start with today
+        var date = cal.startOfDay(for: Date())
+
+        var arrDates = [String]()
+
+        for _ in 1 ... 7 {
+            // move back in time by one day:
+            date = cal.date(byAdding: Calendar.Component.day, value: -1, to: date)!
+
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US")
+            dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd")
+            let dateString = dateFormatter.string(from: date)
+            arrDates.append(dateString)
+        }
+        print(arrDates)
+        return arrDates
     }
 }

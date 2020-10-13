@@ -13,6 +13,7 @@ import LocalAuthentication
 
 class UserObjectModelData : ObservableObject {
     
+    
     @ObservedObject var db = UserDatabaseConnection()
     
     @Published var email = ""

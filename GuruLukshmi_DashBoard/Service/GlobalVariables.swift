@@ -9,5 +9,5 @@
 import Foundation
 
 class GlobalVariables: ObservableObject {
-    @Published var deletedOrder = Orders()
+    //@Published var deletedOrder = Orders()
 }

@@ -18,5 +18,5 @@ struct Orders: Codable, Identifiable, Hashable {
     var listOfOrder = [ListOfOrder]()
     @ServerTimestamp var orderedTime: Timestamp?
     var orderSubTotal = 0.0
-    
+    var isDineIn : Bool
 }

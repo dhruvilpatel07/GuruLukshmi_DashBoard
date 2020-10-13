@@ -21,34 +21,15 @@ struct AnalyticalView: View {
         [200, 176, 23, 88, 7, 49, 80]
     ]
     @State var dataPoints1: [[CGFloat]] = [
-        [],
-        [120, 60, 12, 100, 63, 39, 189],
-        [200, 176, 23, 88, 7, 49, 80]
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], //Hourly
+        [0, 0, 0, 0, 0, 0, 0], //weekly
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // monthly
     ]
-    @State var day1 = 0
-    @State var day2 = 0
-    @State var day3 = 0
-    @State var val = 0
-    @State var dates: [String] = ["Oct 1","Oct 2","Oct 3","Oct 4","Oct 5","Oct 6","Oct 7"]
-    
-    
-    init() {
-        // subtracting one day from current date
-        //self.orderVM.fetchHistoryDataByDate(date: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
-        
-        //getting data from todays data 
-        self.orderVM.fetchHistoryDataByDate(date: Date())
-            print("Day :1 \(self.orderVM.historyOrderListByDate.count)")
-        self.day1 = self.orderVM.historyOrderListByDate.count
-        self.orderVM.fetchHistoryDataByDate(date: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
-            print("Day :2 \(self.orderVM.historyOrderListByDate.count)")
-        self.day2 = self.orderVM.historyOrderListByDate.count
-        self.orderVM.fetchHistoryDataByDate(date: Calendar.current.date(byAdding: .day, value: -2, to: Date())!)
-            print("Day :3 \(self.orderVM.historyOrderListByDate.count)")
-        self.day3 = self.orderVM.historyOrderListByDate.count
-       
-        
-    }
+    @State var dates: [[String]] = [
+        ["12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM", "8 PM", "9 PM"],
+        Date.getDates(forLastNDays: 7),
+        ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    ]
     
     var body: some View {
 
@@ -68,9 +49,19 @@ struct AnalyticalView: View {
                 .padding(.horizontal, 25)
                 
                 HStack(spacing: 30.0){
-                    ForEach(0..<7){ x in
-                        
-                        BarChart(value: dataPoints[pickerSelectedItem - 1][x], dateString: dates[x])
+                    
+                    if pickerSelectedItem == 1 {
+                        ForEach(0..<10){ x in
+                            BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                        }
+                    }else if pickerSelectedItem == 2{
+                        ForEach(0..<7){ x in
+                            BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                        }
+                    }else{
+                        ForEach(0..<12){ x in
+                            BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                        }
                     }
                    
                 }.padding(.top, 30)
@@ -78,11 +69,15 @@ struct AnalyticalView: View {
             }
             
         }.onAppear{
-            
-            print("HEYYYY23")
-            print(Date.currentTimeStamp)
-            print("Day : 1 \(self.day1) \nDay : 2 \(self.day2) \nDay : 3 \(self.day3)")
-            print(self.orderVM.historyOrderListByDate.count)
+            for num in 0..<10{
+                self.dataPoints1[0][num] = CGFloat(self.orderVM.historyOrderListByHourArrayCount[num] * 10)
+            }
+            for num in 0..<7{
+                self.dataPoints1[1][num] = CGFloat(self.orderVM.historyOrderListByDateArrayCount[num] * 10)
+            }
+            for num in 0..<12{
+                self.dataPoints1[2][num] = CGFloat(self.orderVM.historyOrderListByMonthArrayCount[num] * 10)
+            }
         }
         
     }
@@ -99,8 +94,9 @@ struct BarChart: View {
     var dateString: String
     var body: some View{
         VStack{
+            Text("\(String( format: "%.0f" ,value))").padding(.top, 10)
             ZStack(alignment: .bottom){
-                Capsule().frame(width: 30, height: 200).foregroundColor(Color.orange.opacity(0.6))
+                Capsule().frame(width: 30, height: 300).foregroundColor(Color.orange.opacity(0.6))
                 Capsule().frame(width: 30, height: value).foregroundColor(.white)
             }
             Text(dateString).padding(.top, 10)
