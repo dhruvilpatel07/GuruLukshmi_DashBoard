@@ -14,19 +14,20 @@ struct HistoryView: View {
     @State var showHistory = false
     var body: some View {
         NavigationView{
-        ZStack{
-            VStack {
-                List{
-                    ForEach(orderVM.historyOrderList, id: \.self){ order in
-                        NavigationLink(destination: OrdersInDetail(showHistory: self.$showHistory, orderDetail: order)) {
-                            Text("Customer Name: \(order.cName) \nOrder Id: \(order.id ?? "")")
+            ZStack{
+                VStack {
+                    List{
+                        ForEach(orderVM.historyOrderList, id: \.self){ order in
+                            NavigationLink(destination: OrdersInDetail(showHistory: self.$showHistory, orderDetail: order)) {
+                                Text("Customer Name: \(order.cName) \nOrder Id: \(order.id ?? "")")
+                            }
                         }
-                        }
-                }
-            }.edgesIgnoringSafeArea(.all).padding(.top, 30)
+                    }
+                }.edgesIgnoringSafeArea(.all).padding(.top, 30)
                 .navigationBarTitle(Text("History Of Orders"))
+            }
         }
-        }
+        
     }
 }
 

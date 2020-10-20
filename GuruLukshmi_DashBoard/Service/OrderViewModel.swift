@@ -30,6 +30,9 @@ class OrderViewModel: ObservableObject {
     @Published var historyOrderListByMonthArray = [Orders]()
     @Published var historyOrderListByMonthArrayCount = [Int]()
     
+    //fetching most sold food item
+    @Published var listOfMostItemSold = [Food]()
+    
     let componentsYear = Calendar.current.dateComponents([.year], from: Date())
     
     
@@ -39,6 +42,7 @@ class OrderViewModel: ObservableObject {
     init() {
         fetchData()
         loadCategory()
+        loadMostItemSold()
         fetchHistoryData()
         fetchHistoryDataByDateArray(dates: [
                         Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
@@ -93,6 +97,29 @@ class OrderViewModel: ObservableObject {
                 self.arrayOfCategory = querySnapshot.documents.compactMap{ document in
                     do{
                         let x = try document.data(as: FoodCategory.self)
+                        return x
+                    }
+                    catch{
+                        print(error)
+                    }
+                    return nil
+                    
+                }
+            }
+        }
+    }
+    
+    //fetch most item sold
+    func loadMostItemSold() {
+        db.collection("Food")
+            .order(by: "numberOfItemSold", descending: true)
+            .limit(to: 5)
+        //.order(by: "orderedTime")
+            .addSnapshotListener { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot{
+                self.listOfMostItemSold = querySnapshot.documents.compactMap{ document in
+                    do{
+                        let x = try document.data(as: Food.self)
                         return x
                     }
                     catch{

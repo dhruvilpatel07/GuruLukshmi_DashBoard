@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,9 @@
 		A10F80192533AFFB00129297 /* UserDatabaseConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F80182533AFFB00129297 /* UserDatabaseConnection.swift */; };
 		A10F801D2533B06C00129297 /* Admins.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F801C2533B06C00129297 /* Admins.swift */; };
 		A10F802E25352CA000129297 /* AddFoodFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F802D25352CA000129297 /* AddFoodFormView.swift */; };
+		A15478B22535DC7000E0A16F /* AdminSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15478B12535DC7000E0A16F /* AdminSettingView.swift */; };
+		A163F8D4253EC6E7009659B5 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = A163F8D3253EC6E7009659B5 /* SwiftUICharts */; };
+		A163F8DC253EEA6C009659B5 /* CustomePieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163F8DB253EEA6C009659B5 /* CustomePieChartView.swift */; };
 		AE2398A42523E4C5004F6E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398A32523E4C5004F6E1A /* AppDelegate.swift */; };
 		AE2398A62523E4C5004F6E1A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2398A52523E4C5004F6E1A /* SceneDelegate.swift */; };
 		AE2398A92523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AE2398A72523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodeld */; };
@@ -43,6 +46,8 @@
 		A10F80182533AFFB00129297 /* UserDatabaseConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatabaseConnection.swift; sourceTree = "<group>"; };
 		A10F801C2533B06C00129297 /* Admins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admins.swift; sourceTree = "<group>"; };
 		A10F802D25352CA000129297 /* AddFoodFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodFormView.swift; sourceTree = "<group>"; };
+		A15478B12535DC7000E0A16F /* AdminSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingView.swift; sourceTree = "<group>"; };
+		A163F8DB253EEA6C009659B5 /* CustomePieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomePieChartView.swift; sourceTree = "<group>"; };
 		AE2398A02523E4C5004F6E1A /* GuruLukshmi_DashBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuruLukshmi_DashBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE2398A32523E4C5004F6E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE2398A52523E4C5004F6E1A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +87,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65004297A099AFDAFC7959D9 /* Pods_GuruLukshmi_DashBoard.framework in Frameworks */,
+				A163F8D4253EC6E7009659B5 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +192,8 @@
 				AE2A8A8725316D52004EE6B4 /* AnalyticalView.swift */,
 				AE2398AA2523E4C5004F6E1A /* ContentView.swift */,
 				A10F802D25352CA000129297 /* AddFoodFormView.swift */,
+				A15478B12535DC7000E0A16F /* AdminSettingView.swift */,
+				A163F8DB253EEA6C009659B5 /* CustomePieChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,6 +242,9 @@
 			dependencies = (
 			);
 			name = GuruLukshmi_DashBoard;
+			packageProductDependencies = (
+				A163F8D3253EC6E7009659B5 /* SwiftUICharts */,
+			);
 			productName = GuruLukshmi_DashBoard;
 			productReference = AE2398A02523E4C5004F6E1A /* GuruLukshmi_DashBoard.app */;
 			productType = "com.apple.product-type.application";
@@ -262,6 +273,9 @@
 				Base,
 			);
 			mainGroup = AE2398972523E4C5004F6E1A;
+			packageReferences = (
+				A163F8D2253EC6E7009659B5 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = AE2398A12523E4C5004F6E1A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -346,9 +360,11 @@
 				AE2398D02523EA6D004F6E1A /* CurrentOrders.swift in Sources */,
 				AE2A8A9525329583004EE6B4 /* SignUpView.swift in Sources */,
 				AE2A8A8E25329418004EE6B4 /* AccessCode.swift in Sources */,
+				A163F8DC253EEA6C009659B5 /* CustomePieChartView.swift in Sources */,
 				AE781F81252668B20033B037 /* GlobalVariables.swift in Sources */,
 				AE2A8A97253295A2004EE6B4 /* CustomTextFieldView.swift in Sources */,
 				AE2398C92523EA05004F6E1A /* ListOfOrder.swift in Sources */,
+				A15478B22535DC7000E0A16F /* AdminSettingView.swift in Sources */,
 				AE2A8A9325329568004EE6B4 /* LoadingView.swift in Sources */,
 				AE2398C22523E9DA004F6E1A /* OrderViewModel.swift in Sources */,
 				AE2A8A8825316D52004EE6B4 /* AnalyticalView.swift in Sources */,
@@ -550,6 +566,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A163F8D2253EC6E7009659B5 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A163F8D3253EC6E7009659B5 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A163F8D2253EC6E7009659B5 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		AE2398A72523E4C5004F6E1A /* GuruLukshmi_DashBoard.xcdatamodeld */ = {

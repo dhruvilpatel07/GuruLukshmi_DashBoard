@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Firebase
+import SwiftUICharts
 
 
 struct AnalyticalView: View {
@@ -15,7 +16,7 @@ struct AnalyticalView: View {
     @ObservedObject var orderVM = OrderViewModel()
     @State var pickerSelectedItem = 1
     @StateObject var model = UserObjectModelData()
-    @State var dataPoints: [[CGFloat]] = [
+    @State var dataPoints: [[Double]] = [
         [50, 38, 139, 160, 56, 93, 80],
         [120, 60, 12, 100, 63, 39, 189],
         [200, 176, 23, 88, 7, 49, 80]
@@ -31,44 +32,61 @@ struct AnalyticalView: View {
         ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     ]
     
+    @State var sample1 : [ChartCellModel] = []
+    @State var colorArray : [Color] = [Color.red, Color.yellow, Color.green, Color.blue, Color.purple]
+    
     var body: some View {
-
+        
         ZStack{
             Color.orange.opacity(0.6).edgesIgnoringSafeArea(.all)
             
-            VStack{
-                Text("Sales")
-                    .font(.system(size: 45))
-                    .bold()
+            ScrollView(.vertical) {
                 
-                Picker(selection: $pickerSelectedItem, label: Text("")){
-                    Text("Daily").tag(1)
-                    Text("Weekly").tag(2)
-                    Text("Monthly").tag(3)
-                }.pickerStyle(SegmentedPickerStyle())
-                .padding(.horizontal, 25)
-                
-                HStack(spacing: 30.0){
+                VStack(spacing: 20.0){
+                    //Sales Graph
+                    //Image(systemName: "arrow.right").font(.largeTitle)
+                        
+                    Text("Sales")
+                        .font(.system(size: 45))
+                        .bold()
                     
-                    if pickerSelectedItem == 1 {
-                        ForEach(0..<10){ x in
-                            BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                    
+                    Picker(selection: $pickerSelectedItem, label: Text("")){
+                        Text("Daily").tag(1)
+                        Text("Weekly").tag(2)
+                        Text("Monthly").tag(3)
+                    }.pickerStyle(SegmentedPickerStyle())
+                    .padding(.horizontal, 25)
+                    
+                    HStack(spacing: 30.0){
+                        
+                        if pickerSelectedItem == 1 {
+                            ForEach(0..<10){ x in
+                                BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                            }
+                        }else if pickerSelectedItem == 2{
+                            ForEach(0..<7){ x in
+                                BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                            }
+                            /*LineView(data: dataPoints[0], legend: "# of order", style: ChartStyle(backgroundColor: .clear, accentColor: .white, gradientColor: GradientColors.green, textColor: .white, legendTextColor: .black, dropShadowColor: .red)).frame(width: 1000, height: 600)*/
+                        }else{
+                            ForEach(0..<12){ x in
+                                BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                            }
                         }
-                    }else if pickerSelectedItem == 2{
-                        ForEach(0..<7){ x in
-                            BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
-                        }
-                    }else{
-                        ForEach(0..<12){ x in
-                            BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
-                        }
-                    }
-                   
-                }.padding(.top, 30)
-                .animation(.default)
+                        
+                    }.padding(.top, 30)
+                    .animation(.default)
+                    
+                    //Most Item sold soo far
+                    //PieChartView(data: dataPoints[0], title: "Item Sold")
+                    CustomePieChartView(sample1: sample1)//.frame(width: 400, height: 400, alignment: .center)
+                    
+                }
             }
             
         }.onAppear{
+            print(self.orderVM.listOfMostItemSold)
             for num in 0..<10{
                 self.dataPoints1[0][num] = CGFloat(self.orderVM.historyOrderListByHourArrayCount[num] * 10)
             }
@@ -78,6 +96,13 @@ struct AnalyticalView: View {
             for num in 0..<12{
                 self.dataPoints1[2][num] = CGFloat(self.orderVM.historyOrderListByMonthArrayCount[num] * 10)
             }
+            var x = 0
+            for foodItem in self.orderVM.listOfMostItemSold{
+                self.sample1.append(ChartCellModel(color: self.colorArray[x], value: CGFloat(foodItem.numberOfItemSold!), name: foodItem.foodName))
+                x += 1
+            }
+            
+            print("INSIDE ANALYTIC\(self.sample1)")
         }
         
     }

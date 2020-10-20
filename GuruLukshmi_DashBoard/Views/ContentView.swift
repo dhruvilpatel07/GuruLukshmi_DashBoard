@@ -17,6 +17,7 @@ struct ContentView: View {
     @AppStorage("log_Status") var status = false
     @StateObject var model = UserObjectModelData()
     @AppStorage("admin_Status") var isAdmin = false
+    let adminText = Text("ADMIN").foregroundColor(.orange)
     
     init() {
         self.orderVM.fetchData()
@@ -29,19 +30,13 @@ struct ContentView: View {
                     Color.black.opacity(0.9).edgesIgnoringSafeArea(.all)
                     
                     VStack{
-                        Text(isAdmin ? "ADMIN\nDASHBOARD" : "DASHBOARD").foregroundColor(.white)
+                        Text(isAdmin ? "\(adminText)\nDASHBOARD" : "DASHBOARD").foregroundColor(.white)
                             .font(.largeTitle)
                             .multilineTextAlignment(.center)
                         if !isAdmin {
                             Text("Current Orders: \(self.orderVM.orderList.count)").padding().border(Color.green, width: 3)
                                 .font(.title).foregroundColor(.white)
                         }
-                        Button(action: model.logOut,
-                               label: {
-                                    Text("LogOut")
-                                        .foregroundColor(.orange)
-                                        .fontWeight(.bold)
-                                })
                         List{
                             
                             //if user is staff show them this menu
@@ -69,8 +64,15 @@ struct ContentView: View {
                                 NavigationLink(destination: AddFoodFormView()) {
                                     Text("Add Food")
                                 }
+                                
                             }
                             
+                        }
+                        Spacer()
+                        NavigationLink(destination: AdminSettingView( model: model)) {
+                            Text("Settings")
+                                .font(.system(size: 20))
+                                .foregroundColor(.orange)
                         }
                     }
                 }.onAppear{

@@ -21,6 +21,7 @@ struct Food: Codable, Identifiable, Hashable {
     var imgName: String
     var categoryImage: String
     var foodPrice: Double
+    var numberOfItemSold: Int?
 
 }
 
