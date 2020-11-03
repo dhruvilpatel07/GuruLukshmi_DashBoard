@@ -62,7 +62,7 @@ struct ContentView: View {
                                 }
                                 
                                 NavigationLink(destination: AddFoodFormView()) {
-                                    Text("Add Food")
+                                    Text("Edit Food")
                                 }
                                 
                             }

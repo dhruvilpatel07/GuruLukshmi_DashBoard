@@ -21,7 +21,7 @@ struct CurrentOrders: View {
                 List{
                     ForEach(orderVM.orderList, id: \.self){ order in
                         NavigationLink(destination: OrdersInDetail(showHistory: self.$showHistory, orderDetail: order)) {
-                            Text("Customer Name: \(order.cName) \n-- \(order.isDineIn ? "Dine In" : "Take Out")").bold()
+                            Text("\(order.isDineIn ? "Table # : - \(String(order.tableNumber ?? 0))" :  "Customer Name: - \(order.cName)") \n-- \(order.isDineIn ? "Dine In" : "Take Out")").bold()
                         }
                         }
                 }

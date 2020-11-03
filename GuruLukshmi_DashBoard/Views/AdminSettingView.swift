@@ -11,6 +11,8 @@ import SwiftUI
 struct AdminSettingView: View {
     @ObservedObject var db = UserDatabaseConnection()
     @ObservedObject var model : UserObjectModelData
+    
+    @State var isEditAssessCode = false
     var body: some View {
         Form {
             if model.isAdmin {
@@ -18,7 +20,16 @@ struct AdminSettingView: View {
                     HStack {
                         Text("Acess Code")
                         Spacer()
-                        Text("\(db.accessCode[0].code)").foregroundColor(.gray)
+                        Text("\(db.accessCode[0].code)").foregroundColor(.gray).padding(.trailing, 30)
+                        Button {
+                            let newCode = UUID().uuidString.split(separator: "-")[1]
+                            print(newCode)
+                            self.db.updateAccessCode(codeId: self.db.accessCode[0].id!, newCode: String(newCode))
+                            
+                        } label: {
+                            Text("Generate").foregroundColor(.green)
+                        }
+
                     }
                    
                 }

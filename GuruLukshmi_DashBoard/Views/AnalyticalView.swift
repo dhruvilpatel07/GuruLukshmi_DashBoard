@@ -102,15 +102,15 @@ struct AnalyticalView: View {
         }.onAppear{
             print(self.orderVM.listOfMostItemSold)
             for num in 0..<10{
-                self.dataPoints1[0][num] = CGFloat(self.orderVM.historyOrderListByHourArrayCount[num] * 10)
+                self.dataPoints1[0][num] = CGFloat(self.orderVM.historyOrderListByHourArrayCount[num] * 5)
             }
             for num in 0..<7{
-                self.dataPoints1[1][num] = CGFloat(self.orderVM.historyOrderListByDateArrayCount[num] * 10)
+                self.dataPoints1[1][num] = CGFloat(self.orderVM.historyOrderListByDateArrayCount[num] * 5)
             }
             
             for num in 0..<12{
                 
-                self.dataPoints1[2][num] = CGFloat(self.orderVM.historyOrderListByMonthArrayCount[num] * 10)
+                self.dataPoints1[2][num] = CGFloat(self.orderVM.historyOrderListByMonthArrayCount[num] * 5)
             }
             var x = 0
             for foodItem in self.orderVM.listOfMostItemSold{

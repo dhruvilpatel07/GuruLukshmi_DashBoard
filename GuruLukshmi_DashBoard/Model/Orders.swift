@@ -15,6 +15,7 @@ import FirebaseFirestoreSwift
 struct Orders: Codable, Identifiable, Hashable {
     @DocumentID var id: String?
     var cName: String = "Rutul Patel" // Need to make this dynamic when payment system is added
+    var tableNumber: Int?
     var listOfOrder = [ListOfOrder]()
     @ServerTimestamp var orderedTime: Timestamp?
     var orderSubTotal = 0.0

@@ -173,7 +173,7 @@ struct AddFoodFormView: View {
                                             self.foodDescription1 = testFood.foodDescription
                                             self.foodPrice1 = String(format: "%.2f", food.foodPrice)
                                         }
-                                        
+                                    
                                 }
                             }
                             //Text(cate.foodType).tag(cate.foodType)
@@ -185,21 +185,34 @@ struct AddFoodFormView: View {
                     Section(header: Text("Edit")) {
                         TextField("Food Description", text: $foodDescription1)
                         TextField("Food Price", text: $foodPrice1)
-                         
-                     }
+                        
+                    }
                     
                 }
                 
                 Section {
                     if foodDescription1 != "" && formattedNumber1 != 0.0{
-                        
                         Button(action: {
-                            print("ID : - \(self.testFood.id!)")
                             self.orderVM.updateFood(foodId: self.testFood.id!, foodDesc: self.foodDescription1, foodPrice: Double(truncating: formattedNumber1))
-                           // self.orderVM.updateFood(self.testFood)
+                            
+                            self.foodDescription1 = ""
+                            self.foodPrice1 = ""
+                            self.categoryToFetchFoodList = ""
+                            self.fetchFoodListByCategory = ""
                         }) {
                             Text("Update Food")
                         }
+                        
+                        Button(action: {
+                            self.orderVM.deleteFood(self.testFood.id!)
+                            self.foodDescription1 = ""
+                            self.foodPrice1 = ""
+                            self.categoryToFetchFoodList = ""
+                            self.fetchFoodListByCategory = ""
+                        }) {
+                            Text("Delete Food").foregroundColor(.red)
+                        }
+                        
                     }
                 }
             }

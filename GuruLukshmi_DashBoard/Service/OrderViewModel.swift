@@ -271,7 +271,7 @@ class OrderViewModel: ObservableObject {
         }
     }
     
-    //getting Data by monthly
+    //getting Data by monthly by custom year 
     func fetchHistoryDataByMonthArrayWithCustomYear(year : Int) {
         for month in 1..<13 {
             let date = Calendar.current.date(from: DateComponents.init(year: year, month: month))!
@@ -343,6 +343,20 @@ class OrderViewModel: ObservableObject {
                 print("Error updating document: \(err)")
             } else {
                 print("Document successfully updated")
+            }
+        }
+    }
+    
+   
+
+    
+    //Delete Food
+    func deleteFood(_ foodId: String){
+        db.collection("Food").document(foodId).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
             }
         }
     }

@@ -71,4 +71,20 @@ class UserDatabaseConnection: ObservableObject {
         }
     }
     
+    //update Access Code
+    func updateAccessCode(codeId: String, newCode: String){
+        
+        let accessCodeRef = db.collection("AccessCode").document(codeId)
+
+        accessCodeRef.updateData([
+            "code" : newCode
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
 }
