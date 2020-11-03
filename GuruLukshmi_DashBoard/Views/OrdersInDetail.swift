@@ -24,15 +24,16 @@ struct OrdersInDetail: View {
                 }
             }.padding(.horizontal, 30)
             HStack(spacing: 100){
+                //Print Button
                 Button(action: {
                     self.showingAlert = true
                 }) {
-                    Text("Print Order").padding()
+                    Text("Print Order").padding().frame(width: 300, alignment: .center)
                         .foregroundColor(Color.black)
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(lineWidth: 2)
-                                .background(Color.green.cornerRadius(10))
+                                .background(Color.newPrimaryColor.cornerRadius(10))
                     )
                 }
                 .alert(isPresented: $showingAlert) {
@@ -40,15 +41,16 @@ struct OrdersInDetail: View {
                 }
                 if self.showHistory {
                     Button(action: {
+                        //Order Complete button
                         self.orderVM.addToHistory(self.orderDetail)
                         self.orderVM.deleteOrder(self.orderDetail)
                     }) {
-                        Text("Send Order").padding()
+                        Text("Order Complete").padding().frame(width: 300, alignment: .center)
                             .foregroundColor(Color.black)
                             .background(
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(lineWidth: 2)
-                                    .background(Color.green.cornerRadius(10))
+                                    .background(Color.newPrimaryColor.cornerRadius(10))
                         )
                     }
                 }

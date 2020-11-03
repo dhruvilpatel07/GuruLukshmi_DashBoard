@@ -16,47 +16,73 @@ struct AddFoodFormView: View {
     @State private var category = ""
     @State var imgName = ""
     @State var categoryImage = ""
+    @State var selected_CRUD_Operation = 1
+    @State var categoryToFetchFoodList = ""
+    @State var fetchFoodListByCategory = ""
+    @State var foodDescription1: String = ""
+    @State var foodPrice1: String = ""
+    @State var testFood: Food = testData[0]
     
     enum Category: String, CaseIterable, Codable, Hashable {
-            case appetizers = "Appetizers"
-            case indianBreads = "Indian Breads"
-            case idly = "Idly"
-            case dosa = "Dosa"
-            case signatureDosa = "Signature Dosa"
-            case dessert = "Dessert"
-            case uthapams = "Uthapams"
-            case rice = "Rice"
-            case beverages = "Beverages"
-            case sideDish = "Side Dish"
-        }
+        case appetizers = "Appetizers"
+        case indianBreads = "Indian Breads"
+        case idly = "Idly"
+        case dosa = "Dosa"
+        case signatureDosa = "Signature Dosa"
+        case dessert = "Dessert"
+        case uthapams = "Uthapams"
+        case rice = "Rice"
+        case beverages = "Beverages"
+        case sideDish = "Side Dish"
+    }
     
     
     var formattedNumber : NSNumber {
-
+        
         let formatter = NumberFormatter()
-
+        
         guard let number = formatter.number(from: foodPrice) else {
             print("not valid to be converted")
             return 0
         }
-
+        
         return number
     }
-
+    
+    var formattedNumber1 : NSNumber {
+        
+        let formatter = NumberFormatter()
+        
+        guard let number = formatter.number(from: foodPrice1) else {
+            print("not valid to be converted")
+            return 0
+        }
+        
+        return number
+    }
+    
     var body: some View {
+        
+        Picker(selection: $selected_CRUD_Operation, label: Text("Food")){
+            Text("Add Food").tag(1)
+            Text("Update/Delete Food").tag(2)
+        }.pickerStyle(SegmentedPickerStyle())
+        .padding(.horizontal, 15)
+        
+        if selected_CRUD_Operation == 1{
             Form {
                 Section(header: Text("Food Name")) {
                     TextField("Food Name", text: $foodName)
                     TextField("Food Description", text: $foodDescription)
-                   
+                    
                 }
                 
                 Section(header: Text("SELECT CATEGORY")) {
                     Picker(selection: $category,
                            label: Text("Category")) {
                         ForEach(self.orderVM.arrayOfCategory, id: \.self) { cate in
-                                Text(cate.foodType).tag(cate.foodType)
-                            }
+                            Text(cate.foodType).tag(cate.foodType)
+                        }
                     }
                 }
                 Section(header: Text("Food Price")) {
@@ -121,10 +147,69 @@ struct AddFoodFormView: View {
                     }
                 }
             }
-            .navigationBarTitle("Add Food")
-        
+            .navigationBarTitle("Edit Food", displayMode: .inline)
+        }else{
+            Form {
+                Section(header: Text("SELECT CATEGORY")) {
+                    Picker(selection: $categoryToFetchFoodList,
+                           label: Text("Category")) {
+                        ForEach(self.orderVM.arrayOfCategory, id: \.self) { cate in
+                            Text(cate.foodType).tag(cate.foodType)
+                        }
+                    }
+                }
+                
+                if categoryToFetchFoodList != ""{
+                    Section(header: Text("SELECT FOOD")) {
+                        Picker(selection: $fetchFoodListByCategory,
+                               label: Text("Food")) {
+                            ForEach(self.orderVM.arrayOfFoodList, id: \.self) { food in
+                                if self.categoryToFetchFoodList == food.foodType {
+                                    
+                                    
+                                    Text(food.foodName).tag(food.foodName)
+                                        .onTapGesture {
+                                            self.testFood = food
+                                            self.foodDescription1 = testFood.foodDescription
+                                            self.foodPrice1 = String(format: "%.2f", food.foodPrice)
+                                        }
+                                        
+                                }
+                            }
+                            //Text(cate.foodType).tag(cate.foodType)
+                        }
+                    }
+                }
+                
+                if fetchFoodListByCategory != ""{
+                    Section(header: Text("Edit")) {
+                        TextField("Food Description", text: $foodDescription1)
+                        TextField("Food Price", text: $foodPrice1)
+                         
+                     }
+                    
+                }
+                
+                Section {
+                    if foodDescription1 != "" && formattedNumber1 != 0.0{
+                        
+                        Button(action: {
+                            print("ID : - \(self.testFood.id!)")
+                            self.orderVM.updateFood(foodId: self.testFood.id!, foodDesc: self.foodDescription1, foodPrice: Double(truncating: formattedNumber1))
+                           // self.orderVM.updateFood(self.testFood)
+                        }) {
+                            Text("Update Food")
+                        }
+                    }
+                }
+            }
+            
+        }
     }
+    
+    
 }
+
 
 struct AddFoodFormView_Previews: PreviewProvider {
     static var previews: some View {

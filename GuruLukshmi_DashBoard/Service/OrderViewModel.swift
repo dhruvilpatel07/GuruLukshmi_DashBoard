@@ -15,6 +15,7 @@ import FirebaseFirestoreSwift
 class OrderViewModel: ObservableObject {
     
     @Published var arrayOfCategory = [FoodCategory]()
+    @Published var arrayOfFoodList = [Food]()
     @Published var orderList = [Orders]()
     @Published var historyOrderList = [Orders]()
     
@@ -42,6 +43,7 @@ class OrderViewModel: ObservableObject {
     init() {
         fetchData()
         loadCategory()
+        loadFood()
         loadMostItemSold()
         fetchHistoryData()
         fetchHistoryDataByDateArray(dates: [
@@ -70,7 +72,7 @@ class OrderViewModel: ObservableObject {
         ])
     
 
-        fetchHistoryDataByMonthArray(dates: [
+        /*fetchHistoryDataByMonthArray(dates: [
             Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 1))!,
             Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 2))!,
             Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 3))!,
@@ -83,7 +85,9 @@ class OrderViewModel: ObservableObject {
             Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 10))!,
             Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 11))!,
             Calendar.current.date(from: DateComponents.init(year: componentsYear.year ?? 0, month: 12))!
-        ])
+        ])*/
+        
+        fetchHistoryDataByMonthArrayWithCustomYear(year: 2020)
     }
     
     
@@ -97,6 +101,27 @@ class OrderViewModel: ObservableObject {
                 self.arrayOfCategory = querySnapshot.documents.compactMap{ document in
                     do{
                         let x = try document.data(as: FoodCategory.self)
+                        return x
+                    }
+                    catch{
+                        print(error)
+                    }
+                    return nil
+                    
+                }
+            }
+        }
+    }
+    
+    //Fetching foodlist
+    func loadFood() {
+        db.collection("Food")
+        //.order(by: "orderedTime")
+            .addSnapshotListener { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot{
+                self.arrayOfFoodList = querySnapshot.documents.compactMap{ document in
+                    do{
+                        let x = try document.data(as: Food.self)
                         return x
                     }
                     catch{
@@ -173,8 +198,6 @@ class OrderViewModel: ObservableObject {
         }
     }
     
-    
-    
     //Getting DATA by days
     func fetchHistoryDataByDateArray(dates : [Date]) {
         for date in dates {
@@ -248,6 +271,31 @@ class OrderViewModel: ObservableObject {
         }
     }
     
+    //getting Data by monthly
+    func fetchHistoryDataByMonthArrayWithCustomYear(year : Int) {
+        for month in 1..<13 {
+            let date = Calendar.current.date(from: DateComponents.init(year: year, month: month))!
+            db.collection("OrderHistory")
+                .whereField("orderedTime", isMonthly: date)
+                .addSnapshotListener { (querySnapshot, error) in
+                if let querySnapshot = querySnapshot{
+                    self.historyOrderListByMonthArray = querySnapshot.documents.compactMap{ document in
+                        do{
+                            let x = try document.data(as: Orders.self)
+                            return x
+                        }
+                        catch{
+                            print(error)
+                        }
+                        return nil
+                    }
+                    //adding number of order to array count
+                    self.historyOrderListByMonthArrayCount.append(self.historyOrderListByMonthArray.count)
+                }
+            }
+        }
+    }
+    
     
     func deleteOrder(_ order: Orders){
         if let orderID = order.id{
@@ -279,6 +327,23 @@ class OrderViewModel: ObservableObject {
         }
         catch{
             fatalError("Enable to add Order: \(error.localizedDescription)")
+        }
+    }
+    
+    //update Food
+    func updateFood(foodId: String, foodDesc: String, foodPrice: Double){
+        
+        let foodRef = db.collection("Food").document(foodId)
+
+        foodRef.updateData([
+            "foodDescription" : foodDesc,
+            "foodPrice" : foodPrice
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
         }
     }
 

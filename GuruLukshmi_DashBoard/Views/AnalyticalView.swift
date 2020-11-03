@@ -15,6 +15,7 @@ struct AnalyticalView: View {
     
     @ObservedObject var orderVM = OrderViewModel()
     @State var pickerSelectedItem = 1
+    @State var graphPickerSelectedItem = 1
     @StateObject var model = UserObjectModelData()
     @State var dataPoints: [[Double]] = [
         [50, 38, 139, 160, 56, 93, 80],
@@ -43,45 +44,58 @@ struct AnalyticalView: View {
             ScrollView(.vertical) {
                 
                 VStack(spacing: 20.0){
-                    //Sales Graph
-                    //Image(systemName: "arrow.right").font(.largeTitle)
-                        
-                    Text("Sales")
-                        .font(.system(size: 45))
-                        .bold()
-                    
-                    
-                    Picker(selection: $pickerSelectedItem, label: Text("")){
-                        Text("Daily").tag(1)
-                        Text("Weekly").tag(2)
-                        Text("Monthly").tag(3)
+                    Picker(selection: $graphPickerSelectedItem, label: Text("")) {
+                        Text("Sales").tag(1)
+                        Text("Most Item Sold").tag(2)
                     }.pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal, 25)
+                    .padding(.horizontal, 10)
                     
-                    HStack(spacing: 30.0){
+                    if graphPickerSelectedItem == 1{
                         
-                        if pickerSelectedItem == 1 {
-                            ForEach(0..<10){ x in
-                                BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
-                            }
-                        }else if pickerSelectedItem == 2{
-                            ForEach(0..<7){ x in
-                                BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
-                            }
-                            /*LineView(data: dataPoints[0], legend: "# of order", style: ChartStyle(backgroundColor: .clear, accentColor: .white, gradientColor: GradientColors.green, textColor: .white, legendTextColor: .black, dropShadowColor: .red)).frame(width: 1000, height: 600)*/
-                        }else{
-                            ForEach(0..<12){ x in
-                                BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
-                            }
-                        }
+                       // MARK: - SALES GRAPH
+                        Text("Sales")
+                            .font(.system(size: 45))
+                            .bold()
                         
-                    }.padding(.top, 30)
-                    .animation(.default)
-                    
-                    //Most Item sold soo far
-                    //PieChartView(data: dataPoints[0], title: "Item Sold")
-                    CustomePieChartView(sample1: sample1)//.frame(width: 400, height: 400, alignment: .center)
-                    
+                        
+                        Picker(selection: $pickerSelectedItem, label: Text("")){
+                            Text("Daily").tag(1)
+                            Text("Weekly").tag(2)
+                            Text("Monthly").tag(3)
+                        }.pickerStyle(SegmentedPickerStyle())
+                        .padding(.horizontal, 55)
+                        
+                        HStack(spacing: 30.0){
+                            
+                            if pickerSelectedItem == 1 {
+                                ForEach(0..<10){ x in
+                                    BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                                }
+                            }else if pickerSelectedItem == 2{
+                                ForEach(0..<7){ x in
+                                    BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                                }
+                            }else{
+                                
+                                
+                                ForEach(0..<12){ x in
+                                    BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                                }
+                            }
+                            
+                        }.overlay(
+                            Text("Date/Time").bold().offset(x: -450, y: 180)
+                        )
+                        .overlay(
+                            Text("# of Orders").bold().offset(x: -450, y: -173)
+                        )
+                        .padding(.top, 30)
+                        .animation(.default)
+                        
+                    }else{
+                    //MARK: - Most Item sold soo far
+                        CustomePieChartView(sample1: sample1)
+                    }
                 }
             }
             
@@ -93,7 +107,9 @@ struct AnalyticalView: View {
             for num in 0..<7{
                 self.dataPoints1[1][num] = CGFloat(self.orderVM.historyOrderListByDateArrayCount[num] * 10)
             }
+            
             for num in 0..<12{
+                
                 self.dataPoints1[2][num] = CGFloat(self.orderVM.historyOrderListByMonthArrayCount[num] * 10)
             }
             var x = 0
