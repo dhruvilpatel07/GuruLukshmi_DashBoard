@@ -152,6 +152,7 @@ class UserObjectModelData : ObservableObject {
             return
         }
         
+        
         if password_SignUp != reEnterPassword{
             self.alertMsg = "Password Mismatch !!!"
             self.alert.toggle()
