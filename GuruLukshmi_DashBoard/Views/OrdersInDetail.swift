@@ -13,6 +13,7 @@ struct OrdersInDetail: View {
     @Binding var showHistory : Bool
     @ObservedObject var orderVM = OrderViewModel()
     var orderDetail: Orders
+    @Environment(\.presentationMode) var mode
     var body: some View {
         
         VStack(spacing: 100){
@@ -40,10 +41,13 @@ struct OrdersInDetail: View {
                     Alert(title: Text("Order is Printing"), dismissButton: .default(Text("OK")))
                 }
                 if self.showHistory {
+                    
+                    
                     Button(action: {
                         //Order Complete button
                         self.orderVM.addToHistory(self.orderDetail)
                         self.orderVM.deleteOrder(self.orderDetail)
+                        self.mode.wrappedValue.dismiss()
                     }) {
                         Text("Order Complete").padding().frame(width: 300, alignment: .center)
                             .foregroundColor(Color.black)
