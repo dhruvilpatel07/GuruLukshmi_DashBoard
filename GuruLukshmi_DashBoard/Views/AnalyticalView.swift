@@ -99,6 +99,7 @@ struct AnalyticalView: View {
                     }else{
                         //LineView(data: [110, 660, 2340, 4440, 5503, 3302, 220], title: "Total Income", legend: "$").frame(width: 800, height: 600, alignment: .center)
                         LineView(data: [110, 660, 2340, 4440, 5503, 3302, 220, 738, 859,2930, 585, 1005], legend: "$ CAD", style: ChartStyle(backgroundColor: .clear, accentColor: .white, gradientColor: GradientColors.purple, textColor: .white, legendTextColor: .black, dropShadowColor: .red)).frame(width: 1000, height: 700).padding(.top, 50)
+                        
                     }
                 }
             }
