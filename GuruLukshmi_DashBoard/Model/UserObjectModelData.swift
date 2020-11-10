@@ -25,7 +25,7 @@ class UserObjectModelData : ObservableObject {
     @Published var isLinkSend = false
     @Published var accessCode_SignUp = ""
     
-    // Error Alerts
+    // Error Alerts 
     
     @Published var alert = false
     @Published var alertMsg = ""
