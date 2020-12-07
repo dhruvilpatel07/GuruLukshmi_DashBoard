@@ -24,24 +24,27 @@ struct DisplayOrder: View {
                     .foregroundColor(.newPrimaryColor)
                     .padding()
                 HStack {
-                    VStack {
+                    VStack(alignment: .leading) {
                         Text("Quantity: \(food.foodQuantity)")
                             .font(.system(size: 18, weight: Font.Weight.bold, design: Font.Design.rounded))
                             .foregroundColor(.white)
                             .padding(.bottom, 5)
-                        Text("Avoid: ")
-                            .font(.system(size: 18, weight: Font.Weight.bold, design: Font.Design.rounded))
-                            .foregroundColor(.white)
-                        VStack(alignment: .center, spacing: 6.0){
-                            HStack{
-                                Image(systemName: "xmark").foregroundColor(.red)
-                                Text("No Cheese").foregroundColor(.gray)
-                            }
-                            HStack{
-                                Image(systemName: "xmark").foregroundColor(.red)
-                                Text("No Onion").foregroundColor(.gray)
-                            }
-                        }.padding(.top, 2).offset(x: 55, y: 0)
+                        if food.specialInstruction != ""{
+                            Text(food.specialInstruction == "" ? "" : "Special Instruction: ")
+                                .font(.system(size: 18, weight: Font.Weight.bold, design: Font.Design.rounded))
+                                .foregroundColor(.white)
+                            //VStack(alignment: .leading, spacing: 6.0){
+                                //HStack{
+                                    //Image(systemName: "xmark").foregroundColor(.red)
+                            Text(food.specialInstruction ?? "N/A").foregroundColor(.gray).multilineTextAlignment(.leading).padding(.leading, 10).padding(.top, 10)
+                                    //Spacer()
+                               // }
+                                /*HStack{
+                                    Image(systemName: "xmark").foregroundColor(.red)
+                                    Text("No Onion").foregroundColor(.gray)
+                                }*/
+                            //}.padding(.top, 2).offset(x: 55, y: 0)
+                        }
                     }
                     Spacer()
                 }.padding(.leading)

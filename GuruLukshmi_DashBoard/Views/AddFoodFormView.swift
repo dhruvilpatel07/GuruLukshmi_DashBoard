@@ -34,6 +34,7 @@ struct AddFoodFormView: View {
         case rice = "Rice"
         case beverages = "Beverages"
         case sideDish = "Side Dish"
+        case pizza = "Pizza"
     }
     
     
@@ -45,7 +46,6 @@ struct AddFoodFormView: View {
             print("not valid to be converted")
             return 0
         }
-        
         return number
     }
     
@@ -125,7 +125,11 @@ struct AddFoodFormView: View {
                             }else if self.category == Category.sideDish.rawValue {
                                 self.imgName = "faluda"
                                 self.categoryImage = "SideDish"
-                            }else{
+                            }else if self.category == Category.pizza.rawValue{
+                                self.imgName = "pizza"
+                                self.categoryImage = "Pizza"
+                            }
+                            else{
                                 self.imgName = ""
                                 self.categoryImage = ""
                             }

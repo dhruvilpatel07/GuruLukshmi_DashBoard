@@ -18,6 +18,7 @@ struct ContentView: View {
     @StateObject var model = UserObjectModelData()
     @AppStorage("admin_Status") var isAdmin = false
     let adminText = Text("ADMIN").foregroundColor(.orange)
+    @Environment(\.colorScheme) var colorScheme
     
     init() {
         self.orderVM.fetchData()
@@ -27,7 +28,11 @@ struct ContentView: View {
         if status{
             NavigationView{
                 ZStack{
-                    Color.black.opacity(0.9).edgesIgnoringSafeArea(.all)
+                    if colorScheme == .dark {
+                        Color.init(UIColor.secondarySystemBackground).edgesIgnoringSafeArea(.all)
+                    }else{
+                        Color.black.opacity(0.9).edgesIgnoringSafeArea(.all)
+                    }
                     
                     VStack{
                         Text(isAdmin ? "\(adminText)\nDASHBOARD" : "DASHBOARD").foregroundColor(.white)
@@ -40,19 +45,20 @@ struct ContentView: View {
                         List{
                             
                             //if user is staff show them this menu
-                         /*   if !isAdmin{
+                            if !isAdmin{
                                 NavigationLink(destination: CurrentOrders()) {
                                     Text("Current Orders")
                                 }
-                            }*/
+                                
+                            }
                             
                             //if user is admin or staff member then show them this menu
-                            NavigationLink(destination: CurrentOrders()) {
-                                Text("Current Orders")
+                            NavigationLink(destination: RecentOrdersView()) {
+                                Text("Recent Orders")
                             }
                             
                             NavigationLink(destination: HistoryView()) {
-                                Text("History")
+                                Text("Search Orders")
                             }
                             
                             //if user is admin then show this menu
@@ -63,6 +69,10 @@ struct ContentView: View {
                                 
                                 NavigationLink(destination: AddFoodFormView()) {
                                     Text("Edit Food")
+                                }
+                                
+                                NavigationLink(destination: AddCategoryFormView()) {
+                                    Text("Edit Category")
                                 }
                                 
                             }

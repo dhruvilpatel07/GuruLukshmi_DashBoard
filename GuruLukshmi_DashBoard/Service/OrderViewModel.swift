@@ -18,6 +18,8 @@ class OrderViewModel: ObservableObject {
     @Published var arrayOfFoodList = [Food]()
     @Published var orderList = [Orders]()
     @Published var historyOrderList = [Orders]()
+    @Published var historyOrderList1 = [Orders]()
+    
     
     //fetching by day
     @Published var historyOrderListByDateArray = [Orders]()
@@ -45,7 +47,7 @@ class OrderViewModel: ObservableObject {
         loadCategory()
         loadFood()
         loadMostItemSold()
-        fetchHistoryData()
+        fetchHistoryDataWithLimit()
         fetchHistoryDataByDateArray(dates: [
                         Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
                         Calendar.current.date(byAdding: .day, value: -2, to: Date())!,
@@ -178,10 +180,13 @@ class OrderViewModel: ObservableObject {
             }
         }
     }
-    //Getting order from History table
-    func fetchHistoryData() {
+    
+    //Getting recent 15 orders from History table
+    func fetchHistoryDataWithLimit() {
         db.collection("OrderHistory")
-        .order(by: "orderedTime")
+            .order(by: "orderedTime", descending: true)
+            .limit(to: 15)
+        //.order(by: "orderedTime")
             .addSnapshotListener { (querySnapshot, error) in
             if let querySnapshot = querySnapshot{
                 self.historyOrderList = querySnapshot.documents.compactMap{ document in
@@ -196,6 +201,47 @@ class OrderViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    //Getting all records of order from History table
+    func fetchHistoryData() {
+        db.collection("OrderHistory")
+            .order(by: "orderedTime", descending: true)
+            .addSnapshotListener { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot{
+                self.historyOrderList = querySnapshot.documents.compactMap{ document in
+                    do{
+                        let x = try document.data(as: Orders.self)
+                        return x
+                    }
+                    catch{
+                        print(error)
+                    }
+                    return nil
+                }
+            }
+        }
+    }
+    
+    //Getting orders by orderId from History table
+    func fetchHistoryData1(orderId: String) {
+        db.collection("OrderHistory")
+            .whereField("orderId", isEqualTo: orderId)
+            .addSnapshotListener { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot{
+                self.historyOrderList1 = querySnapshot.documents.compactMap{ document in
+                    do{
+                        let x = try document.data(as: Orders.self)
+                        return x
+                    }
+                    catch{
+                        print(error)
+                    }
+                    return nil
+                }
+            }
+        }
+        
     }
     
     //Getting DATA by days
@@ -221,6 +267,31 @@ class OrderViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    //Getting DATA by custom date
+    func fetchHistoryDataByCustomDateArray(date : Date) {
+       // let custom = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+            db.collection("OrderHistory")
+                .whereField("orderedTime", isDateInToday: date)
+                .addSnapshotListener { (querySnapshot, error) in
+                if let querySnapshot = querySnapshot{
+                    self.historyOrderList1 = querySnapshot.documents.compactMap{ document in
+                        do{
+                            let x = try document.data(as: Orders.self)
+                            
+                            return x
+                        }
+                        catch{
+                            print(error)
+                        }
+                        return nil
+                    }
+                    //adding number of order to array count
+                    //self.historyOrderListByDateArrayCount.append(self.historyOrderListByDateArray.count)
+                }
+            }
+        
     }
     
     //Getting DATA by hourly
@@ -330,6 +401,17 @@ class OrderViewModel: ObservableObject {
         }
     }
     
+    // Add Category
+    func addCategory(_ category: FoodCategory){
+        do{
+           
+            let _ = try db.collection("FoodCategory").addDocument(from: category)
+        }
+        catch{
+            fatalError("Enable to add Order: \(error.localizedDescription)")
+        }
+    }
+    
     //update Food
     func updateFood(foodId: String, foodDesc: String, foodPrice: Double){
         
@@ -353,6 +435,36 @@ class OrderViewModel: ObservableObject {
     //Delete Food
     func deleteFood(_ foodId: String){
         db.collection("Food").document(foodId).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+    
+    //update Category
+    func updateCategory(categoryId: String, categoryType: String){
+        
+        let categoryRef = db.collection("FoodCategory").document(categoryId)
+
+        categoryRef.updateData([
+            "foodType" : categoryType
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+   
+
+    
+    //Delete Category
+    func deleteCategory(_ categoryId: String){
+        db.collection("FoodCategory").document(categoryId).delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {

@@ -40,7 +40,7 @@ struct SignUpView: View {
                     }
                     
                     Text("Create a new admin!")
-                        .foregroundColor(Color.black.opacity(0.3))
+                        .foregroundColor(Color.black)
                         .fontWeight(.heavy)
                 }
                 .padding(.top)

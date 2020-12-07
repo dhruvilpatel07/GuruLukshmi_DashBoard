@@ -20,8 +20,9 @@ struct CurrentOrders: View {
             VStack {
                 List{
                     ForEach(orderVM.orderList, id: \.self){ order in
+                        
                         NavigationLink(destination: OrdersInDetail(showHistory: self.$showHistory, orderDetail: order)) {
-                            Text("\(order.isDineIn ? "Table # : - \(String(order.tableNumber ?? 0))" :  "Customer Name: - \(order.cName)") \n-- \(order.isDineIn ? "Dine In" : "Take Out")").bold()
+                            Text("\(order.isDineIn ? "Table # : - \(String(order.tableNumber ?? 0))" :  "Customer Name: - \(String(order.cName!))") \n--                                  \(order.isDineIn ? "Dine In" : "Take Out")").bold()
                         }
                         }
                 }
@@ -38,38 +39,3 @@ struct CurrentOrders_Previews: PreviewProvider {
         CurrentOrders()
     }
 }
-
-/*struct swipeGesture : UIViewRepresentable {
-    
-    func makeCoordinator() -> swipeGesture.Coordinator {
-        return swipeGesture.Coordinator()
-    }
-    
-    func makeUIView(context: UIViewRepresentableContext<swipeGesture>) -> UIView   {
-        
-        let view = UIView()
-        view.backgroundColor = .clear
-        
-        let left = UISwipeGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.left))
-        left.direction = .left
-        
-        view.addGestureRecognizer(left)
-        
-        return view
-    }
-    
-    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<swipeGesture>) {
-        
-    }
-    
-    class Coordinator: NSObject {
-        @ObservedObject var orderVM = OrderViewModel()
-        @EnvironmentObject var envObj: GlobalVariables
-        @objc func left(){
-            print("ADDED TO HISTORY")
-            
-        }
-    }*/
-    
-
-    

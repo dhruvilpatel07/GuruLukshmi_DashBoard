@@ -35,7 +35,7 @@ struct AnalyticalView: View {
     
     @State var sample1 : [ChartCellModel] = []
     @State var colorArray : [Color] = [Color.red, Color.yellow, Color.green, Color.blue, Color.purple]
-    
+    @State var dataType : String = ""
     var body: some View {
         
         ZStack{
@@ -69,23 +69,30 @@ struct AnalyticalView: View {
                         HStack(spacing: 30.0){
                             
                             if pickerSelectedItem == 1 {
+                                
                                 ForEach(0..<10){ x in
                                     BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                                }.onAppear{
+                                    self.dataType = "Time"
                                 }
                             }else if pickerSelectedItem == 2{
                                 ForEach(0..<7){ x in
                                     BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                                }.onAppear{
+                                    self.dataType = "Day"
                                 }
                             }else{
                                 
-                                
                                 ForEach(0..<12){ x in
                                     BarChart(value: dataPoints1[pickerSelectedItem - 1][x], dateString: dates[pickerSelectedItem - 1][x])
+                                }.onAppear{
+                                    self.dataType = "Month"
                                 }
                             }
                             
                         }.overlay(
-                            Text("Date/Time").bold().offset(x: -450, y: 180)
+                            Text(self.dataType).bold()
+                                .offset(x: -470, y: 180)
                         )
                         .overlay(
                             Text("# of Orders").bold().offset(x: -450, y: -173)

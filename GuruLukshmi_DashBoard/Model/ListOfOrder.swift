@@ -15,5 +15,6 @@ struct ListOfOrder: Codable, Identifiable, Hashable{
     var id = UUID().uuidString
     var foodRefrence: Food
     var foodQuantity: Int
+    var specialInstruction: String?
 }
 

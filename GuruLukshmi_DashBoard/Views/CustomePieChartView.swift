@@ -16,7 +16,7 @@ struct CustomePieChartView: View {
     @State var colorArray : [Color] = [Color.red, Color.yellow, Color.green, Color.blue, Color.purple]
     var body: some View {
         VStack(spacing: 15.0) {
-                Text("Most Item Sold").bold().font(.largeTitle)
+                Text("Most Item Sold Till Date").bold().font(.largeTitle)
                 HStack(spacing: 20) {
                     PieChart(dataModel: ChartDataModel.init(dataModel: sample1), onTap: {
                         dataModel in

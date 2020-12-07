@@ -143,13 +143,13 @@ extension Date {
 
         var arrDates = [String]()
 
-        for _ in 1 ... 7 {
-            // move back in time by one day:
+        for _ in 1 ... nDays {
+            // move back in time by one day
             date = cal.date(byAdding: Calendar.Component.day, value: -1, to: date)!
 
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "en_US")
-            dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd")
+            dateFormatter.setLocalizedDateFormatFromTemplate("MMMdd")
             let dateString = dateFormatter.string(from: date)
             arrDates.append(dateString)
         }
@@ -157,3 +157,5 @@ extension Date {
         return arrDates
     }
 }
+
+
